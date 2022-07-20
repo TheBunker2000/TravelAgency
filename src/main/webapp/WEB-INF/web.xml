@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>TravelAgency</display-name>
+  <welcome-file-list>
+    <welcome-file>Index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <error-page>
+    
+    <error-code>404</error-code>
+    <location>/Error404.jsp</location>
+</error-page>
+<error-page>
+    
+    <error-code>500</error-code>
+    <location>/Error500.jsp</location>
+</error-page>
+  
+ <servlet>
+ 	<servlet-name>LoginServlet</servlet-name>	
+ 	<servlet-class>control.LoginServlet</servlet-class>
+ </servlet>
+ 
+ <servlet>
+ 	<servlet-name>SignUpServlet</servlet-name>
+ 	<servlet-class>control.SignUpServlet</servlet-class>
+ </servlet>
+
+<security-constraint>
+    <web-resource-collection>
+      <web-resource-name>AdminProtection</web-resource-name>
+      <url-pattern>/admin/*</url-pattern>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>manager</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+ <login-config>
+  	<auth-method>FORM</auth-method>
+  	<form-login-config>
+  		<form-login-page>/Form.jsp</form-login-page>
+  		<form-error-page>/Failed.jsp</form-error-page>
+  	</form-login-config>
+  </login-config>
+ 
+ <context-param>
+ <param-name>upload.location</param-name>
+ <param-value>/asset/images/</param-value>
+ </context-param>
+  
+</web-app>
